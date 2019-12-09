@@ -10,6 +10,8 @@ import AVFoundation
 import UIKit
 import AVKit
 
+// Fried Chicken Yummy
+
 class PlayerViewController: UIViewController {
     static var buttoned: Bool!
 
@@ -21,6 +23,7 @@ class PlayerViewController: UIViewController {
     @IBOutlet var yearVar: UILabel!
     @IBOutlet var artistAlbumVar: UILabel!
     
+    // Jay Funny Yummy Funny
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,12 +39,15 @@ class PlayerViewController: UIViewController {
             album = String(song.album)
         }
 
+	// Jay fluffy old jay is a reader
+
         if song.artist != nil {
             artist = String(song.artist)
         }
 
         artistAlbumVar.text = "\(artist)\n\n\(album)"
         
+	// You should major in CS
 
     }
     
@@ -54,18 +60,22 @@ class PlayerViewController: UIViewController {
             PlayerViewController.buttoned = false
         }
         
+	// Boing pat pat pat
         
         if PlayerViewController.buttoned! == true {
             print(song.nodeurl)
             let url = URL(string: "\(String(song.downloadurl))")
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }
+
+	// I'm a big funny
         
         else if let url = URL(string: "https://internal.harvardgleeclub.org/"), !url.absoluteString.isEmpty {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             PlayerViewController.buttoned = true
         }
         
+	// Yay Fried Chicken Yummy!
         
     }
 }
