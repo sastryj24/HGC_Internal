@@ -15,13 +15,13 @@ class PLoadingView: UIViewController {
     static var navig: Bool!
     
     // create array of subworks to contain API data
-    var finalWorks: [subwork]!
+    var finalWorks: [subwork] = []
     
     // create a work optional to store information received upon segue from ViewcController
     var piece: work!
     
     // create sworks variable to manipulate data taken from API before passing to next view
-    var sworks: [subwork]!
+    var sworks: [subwork] = []
     
     @IBOutlet var loading: UILabel! // create UILabel for loading screen
     
@@ -29,10 +29,12 @@ class PLoadingView: UIViewController {
     
     var encoded1: Data!
     static var pfirstTime: String? = "yes"
+    static var update: Bool?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        
         if PLoadingView.navig == true {
             navigationController?.popViewController(animated: true)
             PLoadingView.navig = !PLoadingView.navig
@@ -55,7 +57,7 @@ class PLoadingView: UIViewController {
         }
         print(preloaded)
         
-        if preloaded[piece.title] == true {
+        if preloaded[piece.title] == true && PLoadingView.update == false {
             nextView()
             return
         }
@@ -63,6 +65,10 @@ class PLoadingView: UIViewController {
         else {
     //      create URL type and check if it exists
             print("hi3")
+            
+            loading.text = "Loading..."
+            preloaded[piece.title] = false
+            
             let url = URL(string: "https://wrapapi.com/use/sastryj24/cs50/hgcperforms/0.0.2?titleurl=\(piece.url.dropFirst(4))&stateToken=\(LoadingView.keys)&wrapAPIKey=QoUv0L22KUQYHSKo7LfSOHsVQcmglUJW")
             guard let u = url else {
                 print("Cannot access URL")
@@ -206,6 +212,8 @@ class PLoadingView: UIViewController {
                 // indicate that this piece has been looked at before
                 self.preloaded[self.piece.title] = true
                 UserDefaults.standard.set(self.preloaded, forKey: "preload")
+                
+                PLoadingView.update = false
                 
                 print(PLoadingView.pfirstTime)
                 print(pdata)

@@ -25,6 +25,13 @@ class PerformancesViewController: UITableViewController {
         
     }
     
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        PLoadingView.navig = false
+        PLoadingView.update = true
+        navigationController?.popViewController(animated: true)
+        sender.endRefreshing()
+    }
+    
     // set the TableView to only have one column
     override func numberOfSections(in tableView: UITableView) -> Int {
        return 1
