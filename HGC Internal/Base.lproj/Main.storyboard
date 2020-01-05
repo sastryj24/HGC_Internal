@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xgo-mu-Qnf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xgo-mu-Qnf">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,8 +15,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Swipe to Enter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N69-09-0ap">
-                                <rect key="frame" x="64" y="725" width="287" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N69-09-0ap">
+                                <rect key="frame" x="64" y="749" width="287" height="0.0"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -24,6 +24,7 @@
                             <imageView autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" id="SHK-OL-hbw">
                                 <rect key="frame" x="99" y="339" width="217" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
                         </subviews>
@@ -36,7 +37,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lmo-oc-jJ6"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="96Y-6D-Qya" appends="YES" id="Tso-he-2AP"/>
+                            <outletCollection property="gestureRecognizers" destination="LZ0-J5-fuR" appends="YES" id="WGt-aj-kvB"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="NRL-bJ-Sa6"/>
@@ -46,9 +47,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fv2-MU-102" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <swipeGestureRecognizer direction="left" id="96Y-6D-Qya">
+                <swipeGestureRecognizer direction="left" id="LZ0-J5-fuR">
                     <connections>
-                        <action selector="SwipeToEnter:" destination="djA-5p-MPa" id="X2g-9b-B7O"/>
+                        <action selector="SwipeToEnter:" destination="djA-5p-MPa" id="gHP-B9-e4y"/>
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
@@ -100,6 +101,21 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Pieces by Title" largeTitleDisplayMode="always" id="eTG-aR-Kdi"/>
                     <nil key="simulatedTopBarMetrics"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="GvS-KA-NfN">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <attributedString key="attributedTitle">
+                            <fragment content="Pull Down to Add New Internal Recordings">
+                                <attributes>
+                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <font key="NSFont" metaFont="system" size="15"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <connections>
+                            <action selector="refresh:" destination="VHR-ao-Otq" eventType="valueChanged" id="ifV-mt-nEa"/>
+                        </connections>
+                    </refreshControl>
                     <connections>
                         <outlet property="searchBar" destination="qgJ-7L-OKE" id="hTV-BA-79v"/>
                     </connections>
@@ -140,18 +156,18 @@
                     <navigationItem key="navigationItem" id="El3-Ag-wNn"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="PullDown" destination="enU-sa-hKG" id="Ahh-gZ-QlG"/>
+                        <outlet property="loading" destination="enU-sa-hKG" id="WHD-fj-XKc"/>
                         <segue destination="vdv-wa-6TX" kind="show" identifier="PerformsSegue" id="RVc-5h-8z2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9ag-wg-WMI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4255.072463768116" y="89.732142857142847"/>
+            <point key="canvasLocation" x="4141" y="100"/>
         </scene>
         <!--PerformancesView-->
         <scene sceneID="PEh-MS-ud3">
             <objects>
-                <tableViewController title="PerformancesView" clearsSelectionOnViewWillAppear="NO" id="vdv-wa-6TX" customClass="PerformancesViewController" customModule="HGC_Internal" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="PerformancesView" modalPresentationStyle="fullScreen" clearsSelectionOnViewWillAppear="NO" id="vdv-wa-6TX" customClass="PerformancesViewController" customModule="HGC_Internal" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yHX-Ug-IPT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -277,6 +293,7 @@
         <!--Navigation Controller-->
         <scene sceneID="R66-zR-xpt">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h57-To-Ea6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xgo-mu-Qnf" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="9Cu-eC-bO7">
@@ -288,7 +305,6 @@
                         <segue destination="djA-5p-MPa" kind="relationship" relationship="rootViewController" id="8PI-nY-d5M"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h57-To-Ea6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="947.82608695652186" y="89.732142857142847"/>
         </scene>
@@ -297,6 +313,7 @@
         <image name="logo" width="1076" height="1076"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="mAG-9G-2Gh"/>
+        <segue reference="gOY-Bj-Isl"/>
+        <segue reference="zue-S2-Hvh"/>
     </inferredMetricsTieBreakers>
 </document>

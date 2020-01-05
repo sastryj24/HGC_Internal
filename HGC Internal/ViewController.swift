@@ -14,6 +14,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     @IBOutlet var searchBar: UISearchBar?
     
     // receive a list of works garnered from the API request passed from LoadingView
+    
     var searchList: [work] = []
     var works: [work] = []
     
@@ -31,7 +32,9 @@ class ViewController: UITableViewController, UISearchBarDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+            
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+
         // if a segue has taken place, don't initialize a search bar
         if searchBar?.delegate == nil && transition == true {
             return
@@ -42,10 +45,21 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         
         // reload the TableView data
         DispatchQueue.main.async {
+            
+            if LoadingView.firstTime == "yes" {
+                LoadingView.firstTime = "no"
+                UserDefaults.standard.set(LoadingView.firstTime, forKey: "first")
+                print(LoadingView.firstTime)
+            }
+            
             self.tableView.reloadData()
         }
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-
+    }
+    
+    @IBAction func refresh(_ sender: UIRefreshControl) {
+        LoadingView.update = true
+        navigationController?.popViewController(animated: true)
+        sender.endRefreshing()
     }
     
     // set the number of columns in the TableView equal to 1
@@ -105,7 +119,10 @@ class ViewController: UITableViewController, UISearchBarDelegate {
 
         searching = true
         tableView.reloadData()
-       
+    }
+    
+    func initialLoad() {
+        
     }
     
 }
