@@ -14,6 +14,11 @@ import AVKit
 
 class PlayerViewController: UIViewController {
     static var buttoned: Bool!
+    var audioPlayer: AVAudioPlayer!
+    
+    func playTrack(url: String) -> Void {
+        
+    }
 
     // create variable song of type subwork to hold the information passed from the PLoadingView controller about a given song
     var song: subwork!
@@ -39,16 +44,12 @@ class PlayerViewController: UIViewController {
             album = String(song.album)
         }
 
-	// Jay fluffy old jay is a reader
-
         if song.artist != nil {
             artist = String(song.artist)
         }
 
         artistAlbumVar.text = "\(artist)\n\n\(album)"
         
-	// You should major in CS
-
     }
     
 
@@ -59,24 +60,18 @@ class PlayerViewController: UIViewController {
         if PlayerViewController.buttoned == nil {
             PlayerViewController.buttoned = false
         }
-        
-	// Boing pat pat pat
-        
+                
         if PlayerViewController.buttoned! == true {
             print(song.nodeurl)
             let url = URL(string: "\(String(song.downloadurl))")
             UIApplication.shared.open(url!, options: [:], completionHandler: nil)
         }
-
-	// I'm a big funny
         
         else if let url = URL(string: "https://internal.harvardgleeclub.org/"), !url.absoluteString.isEmpty {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             PlayerViewController.buttoned = true
         }
-        
-	// Yay Fried Chicken Yummy!
-        
+                
     }
 }
     
