@@ -34,6 +34,7 @@ class ViewController: UITableViewController, UISearchBarDelegate {
         super.viewWillAppear(animated)
             
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.navigationController?.setToolbarHidden(false, animated: true)
 
         // if a segue has taken place, don't initialize a search bar
         if searchBar?.delegate == nil && transition == true {
@@ -106,6 +107,8 @@ class ViewController: UITableViewController, UISearchBarDelegate {
                 destination.piece = searchList[tableView.indexPathForSelectedRow!.row]
                 }
         }
+        
+        // move to the login screen
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { //search bar funtion
